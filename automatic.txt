@@ -1,0 +1,58 @@
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt install python-pip
+pip install --upgrade pip
+sudo apt install nano
+sudo apt-get install python-opencv
+sudo apt-get install libjpeg-dev
+sudo apt-get install python-numpy
+pip install --trusted-host pypi.python.org moviepy
+pip install setuptools
+pip install scipy #error 
+sudo apt-get install python-scipy #instead
+sudo apt install python-pandas
+sudo apt-get install python-pyaudio
+sudo apt-get install libsndfile1
+sudo apt-get install -y python-soundfile
+pip install webrtcvad
+
+
+sudo apt-get install portaudio.dev
+sudo apt-get update -y
+sudo apt-get install -y python-soundfile
+
+
+pip install llvmlite==0.15.0
+
+pip install numba==0.32.0
+
+pip install librosa==0.4.2
+
+pip uninstall joblib
+
+pip install joblib==0.11
+
+
+#opensmile
+
+官網下載
+
+sudo apt install cmake
+#????????cant install?
+bash build.sh
+
+
+
+#weka
+
+sudo apt-get install build-essential python-dev
+
+sudo apt-get install python-pip python-numpy
+
+sudo apt-get install python-pil python-matplotlib python-pygraphviz
+
+sudo apt-get install default-jdk
+
+sudo pip install javabridge
+
+sudo pip install python-weka-wrapper
