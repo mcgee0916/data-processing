@@ -36,7 +36,7 @@ def NASuploader(address,file,counter=0):
 
 
 
-
+{
 """This part is for upload to IBP"""
 #上傳數字要包含上傳資料資訊以及網址，其他可以空白，若上傳圖片就要網址以及檔案，其他可以空白
 #IBP upload information setting:
@@ -79,15 +79,18 @@ def NASuploader(address,file,counter=0):
 #系統自己設定時間、系統開啟
 #cat = uploader.upload()
 #uploader.IBPuploader(datatype="picture",url="http://ibp.bime.ntu.edu.tw/rest/sensorDataLogs/NCHUBIME/PMML/05/pic/file",file="icecream.jpg")
-
+}
 def IBPuploader(datatype=NULL,timepoint=NULL,url=NULL,info=NULL,file=NULL,counter=5):
     """
     datatype: number , picture
     url : upload url target 
     """
-    if(datatype==NULL):
-        print("upload type is invalid, now into number upload mode.")
+    if(file==NULL):
+        print("upload file is NULL, now into number upload mode.")
         return IBPuploader("number",timepoint=timepoint,url=url,info=info,file=file,counter=counter)
+    if(file!=NULL):
+        print("upload file , now into picture upload mode.")
+        return IBPuploader("picture",timepoint=timepoint,url=url,info=info,file=file,counter=counter)
     if(timepoint==NULL):
         timenow = upload()
         print("upload time is invalid, now set upload time to :"+timenow.uploadtime)
