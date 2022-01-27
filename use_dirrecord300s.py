@@ -230,14 +230,14 @@ wf.close()
 # os.rename(oldname,newname)
 
 # upload
-ftp = FTP("140.120.101.117")
-ftp.login('PMML', 'enjoyresearch')
-ftp.retrlines('LIST')
-ftp.cwd('07_Experimental data/Changhua_Xianxi_poultryhouse/A_dir/20211231/original')
-ftp.retrlines('LIST')
+# ftp = FTP("140.120.101.117")
+# ftp.login('PMML', 'enjoyresearch')
+# ftp.retrlines('LIST')
+# ftp.cwd('07_Experimental data/Changhua_Xianxi_poultryhouse/A_dir/20211231/original')
+# ftp.retrlines('LIST')
 localfile = WAVE_OUTPUT_FILENAME
-f = open(localfile, 'rb')
-ftp.storbinary('STOR %s' % os.path.basename(localfile), f)
+# f = open(localfile, 'rb')
+# ftp.storbinary('STOR %s' % os.path.basename(localfile), f)
 
 # BWfilter
 sr, x = wavfile.read(WAVE_OUTPUT_FILENAME)
@@ -259,14 +259,14 @@ y, Fs = sf.read(WAVE_FILTER)
 sf.write(WAVE_FILTER, y, Fs)
  
 # upload filter file
-ftp = FTP("140.120.101.117")
-ftp.login('PMML', 'enjoyresearch')
-ftp.retrlines('LIST')
-ftp.cwd('07_Experimental data/Changhua_Xianxi_poultryhouse/A_dir/20211231/filter')
-ftp.retrlines('LIST')
+# ftp = FTP("140.120.101.117")
+# ftp.login('PMML', 'enjoyresearch')
+# ftp.retrlines('LIST')
+# ftp.cwd('07_Experimental data/Changhua_Xianxi_poultryhouse/A_dir/20211231/filter')
+# ftp.retrlines('LIST')
 localfile = file_HM + '/butterworthfilter/' + 'BW_' + datetime.now().strftime("%Y%m%d_%H%M") + '.wav'
-f = open(localfile, 'rb')
-ftp.storbinary('STOR %s' % os.path.basename(localfile), f)
+# f = open(localfile, 'rb')
+# ftp.storbinary('STOR %s' % os.path.basename(localfile), f)
 
 
 class FloatBits(ct.Structure):
@@ -945,10 +945,10 @@ f.close()
 #upload predict result
 result = datetime.now().strftime("%Y%m%d")
 #print(result)
-ftp = FTP("140.120.101.117")
-ftp.login('PMML', 'enjoyresearch')
-ftp.retrlines('LIST')
-ftp.cwd('07_Experimental data/Changhua_Xianxi_poultryhouse/A_dir/20211231')
+# ftp = FTP("140.120.101.117")
+# ftp.login('PMML', 'enjoyresearch')
+# ftp.retrlines('LIST')
+# ftp.cwd('07_Experimental data/Changhua_Xianxi_poultryhouse/A_dir/20211231')
 
 def upload_dir(ftp, path, first_call=True):
     try:
@@ -959,10 +959,10 @@ def upload_dir(ftp, path, first_call=True):
         if first_call:
             ftp.cwd(path)
 path = result
-upload_dir(ftp, path)
+# upload_dir(ftp, path)
 
 f = open(predict_result + "/"+ localtime + "_predict_result" +  ".txt", 'rb')
-ftp.storbinary('STOR %s' % os.path.basename(predict_result + "/"+ localtime + "_predict_result" +  ".txt"), f)
+# ftp.storbinary('STOR %s' % os.path.basename(predict_result + "/"+ localtime + "_predict_result" +  ".txt"), f)
 print("___________________________")
 #upload to IBP
 
@@ -986,7 +986,7 @@ query_j = json.dumps(query)
 print(query_j)
 
 try:
-    res = requests.post(url,data=query_j,headers=headers)
+    # res = requests.post(url,data=query_j,headers=headers)
     print("successful upload to IBP")
 except:
     print("Failed to upload to IBP")

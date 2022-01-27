@@ -4,8 +4,10 @@ from ftplib import error_perm
 import requests
 import json
 import time
-from datetime import datetime
-counter=0
+import os
+#範例:上傳NAS
+#uploader.NASuploader(address="01_Personal Folders/B61_朱濬謙",file="icecream.jpg")
+#此處須注意address的"/"是向右的。
 """This part is for upload to NAS """
 class upload():
     def __init__(self):
@@ -14,6 +16,24 @@ class upload():
         self.m = time.strftime('%m', time.localtime(time.time()))
         self.d = time.strftime('%d', time.localtime(time.time()))
         self.HM = time.strftime('%H%M', time.localtime(time.time()))
+
+
+def NASuploader(address,file,counter=0):
+    try:
+        ftp = FTP("140.120.101.117")
+        ftp.login('PMML', 'enjoyresearch')
+        #ftp.retrlines('LIST')
+        ftp.cwd(address)
+        ftp.retrlines('LIST')
+        ftp.storbinary('STOR %s' % os.path.basename(file),open(file, 'rb'))
+    except:
+        if(counter<5):  
+            counter+=1  
+            time.sleep(5)
+            return NASuploader(address=address,file=file,counter=counter)
+        else:
+            print("upload to NAS failed.")
+
 
 
 
@@ -42,6 +62,24 @@ class upload():
 """
 #5.In file input section,you can just input open("檔案名稱","rb") or input {'file': open("檔案名稱","rb")} which is also O.K.
 #6.counter: this is the repeat counter ,if upload is fallure. 
+
+"""範例:上傳IBP 數字"""
+#自訂時間
+# cat = uploader.upload()
+# infor = {"Activity": 4,"dataTime": cat.uploadtime,"_overwrite_": True, "_token_": "340f541d-009f-4d8c-be2c-0b0e38ee7842"}
+# files = open("icecream.jpg", 'rb')
+# uploader.IBPuploader(timepoint=cat.uploadtime,url="http://ibp.bime.ntu.edu.tw/rest/sensorDataLogs/NCHUBIME/PMML/05",info=infor)
+
+"""範例:上傳IBP 圖片"""
+#自訂時間、自己開啟
+#cat = uploader.upload()
+#files = open("icecream.jpg", 'rb')
+#uploader.IBPuploader(datatype="picture",timepoint=cat.uploadtime,url="http://ibp.bime.ntu.edu.tw/rest/sensorDataLogs/NCHUBIME/PMML/05/pic/file",file=files)
+#___________________________________________________________________________________________________________________________________________________________
+#系統自己設定時間、系統開啟
+#cat = uploader.upload()
+#uploader.IBPuploader(datatype="picture",url="http://ibp.bime.ntu.edu.tw/rest/sensorDataLogs/NCHUBIME/PMML/05/pic/file",file="icecream.jpg")
+
 def IBPuploader(datatype=NULL,timepoint=NULL,url=NULL,info=NULL,file=NULL,counter=5):
     """
     datatype: number , picture
@@ -65,7 +103,7 @@ def IBPuploader(datatype=NULL,timepoint=NULL,url=NULL,info=NULL,file=NULL,counte
                 print("please import IBP web address")
             if(info!=NULL):
                 try:
-                    res = requests.post(url,data=query_j,headers=headers,timeout=20)
+                    requests.post(url,data=query_j,headers=headers,timeout=20)
                     print("successful upload number data to IBP")
                 except:  
                     print("Failed to upload number to IBP.")
