@@ -9,8 +9,8 @@ from scipy import signal
 timenow = upload.upload()
 print(timenow.uploadtime)
 
-url1 = 'http://ibp.bime.ntu.edu.tw/rest/sensorDataLogs/CH01/PH01/A_dir'
-url2 = 'http://ibp.bime.ntu.edu.tw/rest/sensorDataLogs/CH01/PH01/A_dir'
+url1 = '01_Personal Folders/B61_朱濬謙'
+url2 = '01_Personal Folders/B61_朱濬謙'
 headers = {"Content-Type":"application/json"}
 
 uploadtime = timenow.uploadtime
