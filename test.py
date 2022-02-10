@@ -1,6 +1,6 @@
-from nestedsegment import nested
-from upload import uploader
-cat = uploader.upload()
-files = open("icecream.jpg", 'rb')
+import setting
 
-uploader.IBPuploader(datatype="picture",url="http://ibp.bime.ntu.edu.tw/rest/sensorDataLogs/NCHUBIME/PMML/05/pic/file",file=files)
+import os
+cat = setting.uploadtime()
+print(os.path.dirname(os.path.abspath(__file__)))
+cat.foldermake()
